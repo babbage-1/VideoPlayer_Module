@@ -1,0 +1,3 @@
+let sampleData = {"id":6,"name":"Alabama Larkspur","associatedVideos":[{"title":"Meles meles","url":"https://www.youtube.com/watch?v=UMaAF2WTK1A"},{"title":"Canis aureus","url":"https://www.youtube.com/watch?v=71U_qjHLM58"},{"title":"Platalea leucordia","url":"https://www.youtube.com/watch?v=GiNPcLwSeME"},{"title":"Certotrichas paena","url":"https://www.youtube.com/watch?v=XbQ08Ixczvo"},{"title":"Oreamnos americanus","url":"https://www.youtube.com/watch?v=6Bw1jW4tSnA"}]}
+
+export default sampleData;
