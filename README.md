@@ -1,9 +1,20 @@
-# video-player-and-carousel
+### video-player-and-carousel
 
-##Setup
-- PostgreSQL should be installed and running on your machine
+## Related Projects
+  https://github.com/team-fry-hrr37-fec/video-player-and-carousel
 
-### Backend Requirements
+## Requirements
+  PostgreSQL should be installed and running on your machine
+  Node 6.13.0
+  etc
+  
+## Development
+# Installing Dependencies
+  From within the root directory:
+    npm install -g webpack
+    npm install
+
+## CRUD API Routes
 
 | intention                                                       | request type | request url       | request body                                                          | side effect                                                     | response body                                                                                                                           |
 |-----------------------------------------------------------------|--------------|-------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
