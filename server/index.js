@@ -1,15 +1,15 @@
 const express = require('express');
 const app = (express());
-const PORT = 3001;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db/index');
+const PORT = process.env.PORT || 3001;
 
-app.use(bodyParser());
-
+app.use(bodyParser.urlencoded( { extended: true } ))
+app.use(bodyParser.json())
 app.use(cors());
 
-app.use('/:id', express.static(__dirname + '/../public/'));
+app.use('/carousel/:id', express.static(__dirname + '/../client/dist'));
 
 app.get('/videos/:id', (req, res) => {
   let id = req.params.id;
@@ -25,9 +25,8 @@ app.get('/videos/:id', (req, res) => {
   })
 })
 
-
-app.use('/client/dist/bundle.js', (express.static(__dirname + '/../client/dist/bundle.js')))
-app.use('/*', express.static(__dirname + '/../public/'));
+// app.use('/client/dist/bundle.js', (express.static(__dirname + '/../client/dist/bundle.js')))
+// app.use('/*', express.static(__dirname + '/../client/dist/index.html'));
 
 app.listen(PORT, () => {
   console.log(`Server active! Listening on port ${PORT}.`)
