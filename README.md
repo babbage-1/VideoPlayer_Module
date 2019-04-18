@@ -8,8 +8,7 @@
   - Node 6.13.0
   - etc
   
-## Development
-### Installing Dependencies
+## Installing Dependencies
   From within the root directory:
     - npm install -g webpack
     - npm install
