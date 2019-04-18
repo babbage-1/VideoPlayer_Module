@@ -46,7 +46,7 @@ class Synopsis extends React.Component {
     })
     .join('');
 
-    return fetch(`http://localhost:3333/associatedVideos?movieID=${urlID || 1}`, {
+    return fetch(`/videos/${urlID || 1}`, {
       method: "GET",
       headers: {
         "Content-Type":"application/json"

@@ -7,12 +7,10 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "build":"webpack -d",
     "grunt-upload": "grunt s3",
-    "react-dev": "webpack -d --watch",
-    "seed-db": "mongoimport --db fandangit --collection movies --drop --file mock_movie_data.json --jsonArray",
-    "server-dev": "nodemon server/index.js",
-    "start":"node server/index.js",
+    "build": "webpack -d --watch",
+    "seed": "mongoimport --db fandangit --collection movies --drop --file mock_movie_data.json --jsonArray",
+    "start": "nodemon server/index.js",
     "test": "jest --coverage"
   },
   "dependencies": {
