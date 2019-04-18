@@ -1,4 +1,4 @@
-### video-player-and-carousel
+# video-player-and-carousel
 
 ## Related Projects
   https://github.com/team-fry-hrr37-fec/video-player-and-carousel
@@ -9,7 +9,7 @@
   etc
   
 ## Development
-# Installing Dependencies
+### Installing Dependencies
   From within the root directory:
     npm install -g webpack
     npm install
