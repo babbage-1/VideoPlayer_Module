@@ -9,7 +9,8 @@
   "scripts": {
     "grunt-upload": "grunt s3",
     "build": "webpack -d --watch",
-    "seed": "mongoimport --db fandangit --collection movies --drop --file mock_movie_data.json --jsonArray",
+    "write": "node --max-old-space-size=4096 ./server/db/data/generate.js",
+    "seed": "node --max-old-space-size=4096 ./server/db/data/seed.js",
     "start": "nodemon server/index.js",
     "test": "jest --coverage"
   },
@@ -31,6 +32,7 @@
     "jest": "^24.5.0",
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.20",
+    "pg": "^7.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.2.0",
