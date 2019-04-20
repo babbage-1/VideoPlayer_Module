@@ -29,3 +29,4 @@ for (var i = 1; i <= 10; i++){
   writeData(i);
 }
 
+//This function generates random movie names, random urls (these random urls are selected from randomly from 500 youtube movie trailer urls) and an associated videos array which is array of five random numbers between 1 and 10M.
