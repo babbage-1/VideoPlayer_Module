@@ -22,6 +22,7 @@
     "babel-loader": "^8.0.5",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "csvdata": "^1.7.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "enzyme-to-json": "^3.3.5",

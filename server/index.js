@@ -25,8 +25,6 @@ app.get('/videos/:id', (req, res) => {
   })
 })
 
-// app.use('/client/dist/bundle.js', (express.static(__dirname + '/../client/dist/bundle.js')))
-// app.use('/*', express.static(__dirname + '/../client/dist/index.html'));
 
 app.listen(PORT, () => {
   console.log(`Server active! Listening on port ${PORT}.`)
