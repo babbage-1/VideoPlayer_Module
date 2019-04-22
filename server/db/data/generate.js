@@ -3,7 +3,7 @@ const faker = require('faker');
 const videoData = require('./videos.js');
 
 
-//Generates 1 csv file.
+//Generates 1 csv file
 
 var writeData = function(i) {
   var data = '';
@@ -51,7 +51,7 @@ writeData(0);
 
 
 
-//Generates 10 csv files.
+//Generates 10 csv files
 
 // var writeData = function(i) {
 //   var header = 'movieId|name|url|associatedVideos\n';
