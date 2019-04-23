@@ -11,6 +11,7 @@
     "build": "webpack -d --watch",
     "write": "node --max-old-space-size=4096 ./server/db/data/generate.js",
     "seed": "node --max-old-space-size=4096 ./server/db/data/seed.js",
+    "seed:cassandra": "cqlsh -f ./server/db/data/cassandra.cql 127.0.0.1",
     "start": "nodemon server/index.js",
     "test": "jest --coverage"
   },
