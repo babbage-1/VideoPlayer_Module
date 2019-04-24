@@ -18,7 +18,6 @@ const pool = new Pool({
     await client.query('BEGIN');
     await client.query(`
       CREATE TABLE IF NOT EXISTS videos(
-        movieId INT NOT NULL,
         name VARCHAR(50) NOT NULL,
         url VARCHAR(100) NOT NULL,
         associatedVideos INT [] NOT NULL
@@ -27,10 +26,11 @@ const pool = new Pool({
 
     console.log('writing to database!');
 
-    const path = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/data.csv';
+    //const path = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/data.csv';
+    const path = '/Users/aysun/Documents/hr/video-player-and-carousel/data.csv';
 
     await client.query(`
-    COPY videos FROM '${path}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
+      COPY videos FROM '${path}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
     `);
 
     await client.query(`

@@ -1,12 +1,13 @@
-CREATE KEYSPACE IF NOT EXISTS videoplayer WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 4};
+CREATE KEYSPACE IF NOT EXISTS videoplayer WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
 
 USE videoplayer;
 
 CREATE TABLE IF NOT EXISTS videos(
-  movieId int PRIMARY KEY,
+  movieId int,
   name varchar,
   url varchar,
-  associatedVideos set <int>
+  associatedVideos set <int>,
+  PRIMARY KEY(movieId)
 );
 
 
