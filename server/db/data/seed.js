@@ -36,6 +36,7 @@ const pool = new Pool({
 
     console.log('writing to database!');
 
+    //TODO: Use relative paths.
     const videosPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/VideosData.csv';
     const associatedPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/AssociatedData.csv';
 

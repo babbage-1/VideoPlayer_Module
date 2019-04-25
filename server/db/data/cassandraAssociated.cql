@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS videoplayer WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
+CREATE KEYSPACE IF NOT EXISTS videoplayer WITH replication = {'class': 'NetworkTopology, 'replication_factor': 3};
 
 USE videoplayer;
 

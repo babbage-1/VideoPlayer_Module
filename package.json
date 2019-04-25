@@ -13,7 +13,8 @@
     "seed": "node --max-old-space-size=4096 ./server/db/data/seed.js",
     "seed:cassandra1": "cqlsh -f ./server/db/data/cassandraVideos.cql 127.0.0.1",
     "seed:cassandra2": "cqlsh -f ./server/db/data/cassandraAssociated.cql 127.0.0.1",
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "seed-db": "mongoimport --db fandangit --collection movies --drop --file mock_movie_data.json --jsonArray"
   },
   "dependencies": {
     "@babel/core": "^7.4.0",
