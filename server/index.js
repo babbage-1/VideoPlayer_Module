@@ -42,7 +42,7 @@ app.get('/videos/:id', (req, res) => {
       for (var i = 0; i < results.rows.length; i++) {
         result.associatedVideos[i] = {title: results.rows[i].name, url: results.rows[i].url}
       }
-      res.json([result]);
+      res.status(200).json([result]);
     }
   })
 })
@@ -55,7 +55,7 @@ app.post('/videos/:id', (req, res) => {
       res.sendStatus(500);
     } else {
       console.log('POST successful! results: ', results);
-      res.status(200).send(results.rows);
+      res.status(200).json(results.rows);
     }
   })
 })
@@ -68,7 +68,7 @@ app.put('/videos/:id', (req, res) => {
       res.sendStatus(500);
     } else {
       console.log('PUT successful! results: ', results);
-      res.status(200).send(results.rows);
+      res.status(200).json(results.rows);
     }
   })
 })
@@ -81,7 +81,7 @@ app.delete('/videos/:id', (req, res) => {
       res.sendStatus(500);
     } else {
       console.log('DELETE successful! results: ', results);
-      res.status(200).send(results.rows);
+      res.status(200).json(results.rows);
     }
   })
 })
