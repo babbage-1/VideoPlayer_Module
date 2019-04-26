@@ -71,7 +71,5 @@ const pool = new Pool({
 
 
 
-// SELECT * from videos WHERE id IN (SELECT associatedid FROM associatedvideos WHERE id=1);
-
 
 

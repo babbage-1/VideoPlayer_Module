@@ -11,24 +11,6 @@ app.use(cors());
 
 app.use('/carousel/:id', express.static(__dirname + '/../client/dist'));
 
-// app.get('/videos/:id', (req, res) => {
-//   let id = req.params.id;
-//   db.getMovieData(id, (err, results) => {
-//     if (err) {
-//       console.log(err);
-//       res.sendStatus(500);
-//     } else {
-//       console.log('db query successful! results: ', results);
-//       res.statusCode = 200;
-//       res.json(results);
-//     }
-//   })
-// })
-
-const validate = function(id, name, url, associatedId) {
-
-}
-
 
 app.get('/videos/:id', (req, res) => {
   const {id} = req.params;
@@ -47,8 +29,8 @@ app.get('/videos/:id', (req, res) => {
       }
       res.status(200).json([result]);
     }
-  })
-})
+  });
+});
 
 app.post('/videos/add', (req, res) => {
   let {name, url} = req.body;
@@ -60,8 +42,22 @@ app.post('/videos/add', (req, res) => {
       console.log('POST successful! results: ', results);
       res.status(200).json(results);
     }
-  })
-})
+  });
+});
+
+//Execution tim eof this API call is too much.
+
+// app.post('/videos/add', async (req, res) => {
+//   try {
+//     const {name, url} = req.body;
+//     const query = await db.createVideoAndAssociation(name, url);
+//     res.status(200).json(query);
+//   } catch (e) {
+//     res.sendStatus(500);
+//   }
+// });
+
+
 
 app.put('/videos/update', (req, res) => {
   const {name, url, id} = req.body;
@@ -73,8 +69,8 @@ app.put('/videos/update', (req, res) => {
       console.log('PUT successful! results: ', results);
       res.status(200).json(results);
     }
-  })
-})
+  });
+});
 
 app.delete('/videos/delete', (req, res) => {
   const {id, associatedId} = req.body;
@@ -86,10 +82,10 @@ app.delete('/videos/delete', (req, res) => {
       console.log('DELETE successful! results: ', results);
       res.status(200).json(results);
     }
-  })
-})
+  });
+});
 
 
 app.listen(PORT, () => {
   console.log(`Server active! Listening on port ${PORT}.`)
-})
+});
