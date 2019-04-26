@@ -25,6 +25,10 @@ app.use('/carousel/:id', express.static(__dirname + '/../client/dist'));
 //   })
 // })
 
+const validate = function(id, name, url, associatedId) {
+
+}
+
 
 app.get('/videos/:id', (req, res) => {
   const {id} = req.params;
@@ -34,9 +38,8 @@ app.get('/videos/:id', (req, res) => {
       res.sendStatus(500);
     } else {
       console.log('GET successful! results: ', results.rows);
-
       var result = {};
-      result.id = results.rows[0].id;
+      result.id = id;
       result.name = results.rows[0].name;
       result.associatedVideos = [];
       for (var i = 0; i < results.rows.length; i++) {
@@ -47,33 +50,33 @@ app.get('/videos/:id', (req, res) => {
   })
 })
 
-app.post('/videos/:id', (req, res) => {
-  const {name, url} = req.body;
+app.post('/videos/add', (req, res) => {
+  let {name, url} = req.body;
   db.createVideo(name, url, (err, results) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
     } else {
       console.log('POST successful! results: ', results);
-      res.status(200).json(results.rows);
+      res.status(200).json(results);
     }
   })
 })
 
-app.put('/videos/:id', (req, res) => {
-  const {name, url} = req.body;
-  db.updateVideo(name, url, (err, results) => {
+app.put('/videos/update', (req, res) => {
+  const {name, url, id} = req.body;
+  db.updateVideo(name, url, id, (err, results) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
     } else {
       console.log('PUT successful! results: ', results);
-      res.status(200).json(results.rows);
+      res.status(200).json(results);
     }
   })
 })
 
-app.delete('/videos/:id', (req, res) => {
+app.delete('/videos/delete', (req, res) => {
   const {id, associatedId} = req.body;
   db.deleteAssociation(id, associatedId, (err, results) => {
     if(err) {
@@ -81,7 +84,7 @@ app.delete('/videos/:id', (req, res) => {
       res.sendStatus(500);
     } else {
       console.log('DELETE successful! results: ', results);
-      res.status(200).json(results.rows);
+      res.status(200).json(results);
     }
   })
 })

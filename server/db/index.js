@@ -36,29 +36,28 @@ const pool = new Pool({
 //TODO: factor config to out.
 
 var getVideos = function(id, callback) {
-  pool.query(`SELECT * from videos WHERE id IN (SELECT associatedid FROM associatedVideos WHERE id=${id})`, function(err, results) {
+  pool.query(`SELECT * from videos WHERE id IN (SELECT associatedid FROM associatedVideos WHERE id=$1)`, [id], function(err, results) {
     callback(err, results);
   })
 }
 
 var createVideo = function(name, url, callback) {
-  pool.query(`INSERT INTO videos (name, url) VALUES (${name}, ${url})`, function(err, results) {
+  pool.query(`INSERT INTO videos (name, url) VALUES ($1, $2)`, [name, url], function(err, results) {
     callback(err, results);
   })
 }
 
-var updateVideo = function(name, url, callback) {
-  pool.query(`UPDATE videos SET name=${name}, url=${url}`, function(err, results) {
+var updateVideo = function(name, url, id, callback) {
+  pool.query(`UPDATE videos SET name=$1, url=$2 WHERE id=$3`, [name, url, id], function(err, results) {
     callback(err, results);
   })
 }
 
 var deleteAssociation = function(id, associatedId, callback) {
-  pool.query(`DELETE FROM associatedVideos WHERE id=${id} and associatedId=${associatedId}`), function(err, results) {
+  pool.query(`DELETE FROM associatedVideos WHERE id=$1 AND associatedId=$2`, [id, associatedId], function(err, results) {
     callback(err, results);
-  }
+  })
 }
-
 
 
 module.exports = {
