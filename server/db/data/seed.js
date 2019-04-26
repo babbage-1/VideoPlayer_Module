@@ -16,25 +16,44 @@ const pool = new Pool({
     console.time('timing seed');
 
     await client.query('BEGIN');
+
+    await client.query(`DROP TABLE IF EXISTS videos;`);
+    await client.query(`DROP TABLE IF EXISTS associatedVideos;`);
+
     await client.query(`
       CREATE TABLE IF NOT EXISTS videos(
         name VARCHAR(50) NOT NULL,
-        url VARCHAR(100) NOT NULL,
-        associatedVideos INT [] NOT NULL
+        url VARCHAR(100) NOT NULL
+        );
+    `);
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS associatedVideos(
+        id INT NOT NULL,
+        associatedId INT NOT NULL
         );
     `);
 
     console.log('writing to database!');
 
-    //const path = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/data.csv';
-    const path = '/Users/aysun/Documents/hr/video-player-and-carousel/data.csv';
+    //TODO: Use relative paths.
+    const videosPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/VideosData.csv';
+    const associatedPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/AssociatedData.csv';
 
     await client.query(`
-      COPY videos FROM '${path}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
+      COPY videos FROM '${videosPath}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
+    `);
+
+    await client.query(`
+      COPY associatedVideos FROM '${associatedPath}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
     `);
 
     await client.query(`
       ALTER TABLE videos ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
+    `);
+
+    await client.query(`
+      CREATE INDEX ON associatedVideos (id);
     `);
 
     await client.query('COMMIT');
@@ -49,8 +68,6 @@ const pool = new Pool({
     client.release();
   }
 })().catch(e => console.error(e.stack));
-
-
 
 
 

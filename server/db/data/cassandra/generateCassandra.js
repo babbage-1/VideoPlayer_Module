@@ -1,21 +1,17 @@
-const fs = require('fs');
-const faker = require('faker');
-const videoData = require('./videos.js');
-
-
 var writeVideosData = function(i) {
   var data = '';
   if (i === 0) {
-    data = 'name|url\n';
+    data = 'movieId|name|url\n';
   }
   var name, randomVideoIndex, randomVideoId, url;
 
   for (var j = 1; j < 100001; j++) {
+    movieId = i * 100000 + j;
     name = faker.lorem.words(2);
     randomVideoIndex = faker.random.number({"min": 0, "max": 499});
     randomVideoId = videoData.videos[randomVideoIndex].contentDetails.videoId;
     url = `https://www.youtube.com/watch?v=${randomVideoId}`;
-    data += `${name}|${url}\n`;
+    data += `${movieId}|${name}|${url}\n`;
   }
   if (i === 0) {
     fs.writeFile(`./VideosData.csv`, data, function(err) {
@@ -41,24 +37,26 @@ var writeVideosData = function(i) {
 }
 
 
-
 var writeAssociatedData = function(i) {
   var data = '';
   if (i === 0) {
-    data = 'id|associatedId\n';
+    data = 'id|movieId|associatedId\n';
   }
-  var id, randomInt, associatedId;
+  var id, movieId, counter, randomInt, associatedId;
+
+  counter = 1;
 
   for (var j = 1; j < 100001; j++) {
     randomInt = faker.random.number({"min": 2, "max": 5});
     for (var k = 0; k < randomInt; k++) {
-      id = i * 100000 + j;
+      id = counter++;
+      movieId = i * 100000 + j;
       if (k === 0) {
-        associatedId = id;
+        associatedId = movieId;
       } else {
         associatedId = faker.random.number({"min": 1, "max": 10000000});
       }
-      data += `${id}|${associatedId}\n`;
+      data += `${id}|${movieId}|${associatedId}\n`;
     }
   }
   if (i === 0) {
@@ -86,10 +84,3 @@ var writeAssociatedData = function(i) {
 
 writeVideosData(0);
 writeAssociatedData(0);
-
-
-
-
-
-
-
