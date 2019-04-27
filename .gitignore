@@ -1,4 +1,9 @@
 node_modules
+npm
+npm-debug.log
 server/db/data/csv/
 csv
-data.csv
+client/dist/bundle.js
+bundle.js
+.DS_Store
+*.csv
