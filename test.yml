@@ -1,11 +1,13 @@
 config:
   target: 'http://localhost:3001/videos'
+  http:
+    pool: 10
   phases:
     - duration: 60
       arrivalRate: 10
-      rampTo: 400
+      rampTo: 50
     - duration: 60
-      arrivalRate: 400
+      arrivalRate: 50
   defaults:
     headers:
       # x-my-service-auth: '987401838271002188298567'
@@ -15,17 +17,24 @@ config:
       - "id"
     skipheader: true
 scenarios:
-  - name: "GET and POST requests"
+  - name: "GET requests"
     weight: 19
     flow:
-      - get:
-          url: "/{{ id }}"
-  - name: "GET and POST requests"
+      - loop:
+        - get:
+            url: "/{{ id }}"
+        - think: 5
+        count: 10
+  - name: "POST requests"
     weight: 1
     flow:
-      - post:
-          url: "/add"
-          json:
-            name: "test"
-            url: "https://www.youtube.com/watch?v=XfRY0ASZHuU"
+      - loop:
+        - post:
+            url: "/add"
+            json:
+              name: "test"
+              url: "https://www.youtube.com/watch?v=XfRY0ASZHuU"
+        - think: 20
+        count: 10
+
 
