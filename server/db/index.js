@@ -3,7 +3,7 @@ const { config } = require('./postgres.config.js');
 const pool = new Pool(config);
 
 const getVideos = function(id, callback) {
-  pool.query(`SELECT * from videos WHERE id IN (SELECT associatedid FROM associatedVideos WHERE id=$1)`, [id], function(err, results) {
+  pool.query(`SELECT name, url from videos WHERE id IN (SELECT associatedid FROM associatedVideos WHERE id=$1)`, [id], function(err, results) {
     callback(err, results);
   })
 }

@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const app = (express());
 const bodyParser = require('body-parser');
@@ -11,6 +12,40 @@ app.use(cors());
 
 app.use('/carousel/:id', express.static(__dirname + '/../client/dist'));
 
+// var cache = {};
+// var cacheRequest = 0;
+// var cacheHit = 0;
+
+// app.get('/videos/:id', (req, res) => {
+//   const {id} = req.params;
+//   cacheRequest ++;
+//   if (cache[id]) {
+//     cacheHit ++;
+//     res.status(200).json([cache[id]]);
+//     return;
+//   }
+//   if (cacheRequest % 200 === 0) {
+//     console.log('cache hit rate:', cacheRequest, (cacheHit * 100.0)/cacheRequest);
+//   }
+//   db.getVideos(id, (err, results) => {
+//     if (err) {
+//       console.log(err);
+//       res.sendStatus(500);
+//     } else {
+//       var result = {
+//         id: id,
+//         name: results.rows[0].name,
+//         associatedVideos: []
+//       };
+//       for (var i = 0; i < results.rows.length; i++) {
+//         result.associatedVideos[i] = {title: results.rows[i].name, url: results.rows[i].url}
+//       }
+//       cache[id] = result;
+//       res.status(200).json([result]);
+//     }
+//   });
+// });
+
 
 app.get('/videos/:id', (req, res) => {
   const {id} = req.params;
@@ -19,11 +54,11 @@ app.get('/videos/:id', (req, res) => {
       console.log(err);
       res.sendStatus(500);
     } else {
-      console.log('GET successful! results: ', results.rows);
-      var result = {};
-      result.id = id;
-      result.name = results.rows[0].name;
-      result.associatedVideos = [];
+      var result = {
+        id: id,
+        name: results.rows[0].name,
+        associatedVideos: []
+      };
       for (var i = 0; i < results.rows.length; i++) {
         result.associatedVideos[i] = {title: results.rows[i].name, url: results.rows[i].url}
       }
@@ -32,6 +67,7 @@ app.get('/videos/:id', (req, res) => {
   });
 });
 
+
 app.post('/videos/add', (req, res) => {
   let {name, url} = req.body;
   db.createVideo(name, url, (err, results) => {
@@ -39,8 +75,9 @@ app.post('/videos/add', (req, res) => {
       console.log(err);
       res.sendStatus(500);
     } else {
-      console.log('POST successful! results: ', results);
-      res.status(200).json(results);
+      // console.log('POST successful! results: ', results);
+      // res.status(200).json(results);
+      res.status(201).json("OK");
     }
   });
 });
@@ -66,7 +103,7 @@ app.put('/videos/update', (req, res) => {
       console.log(err);
       res.sendStatus(500);
     } else {
-      console.log('PUT successful! results: ', results);
+      // console.log('PUT successful! results: ', results);
       res.status(200).json(results);
     }
   });
@@ -79,7 +116,7 @@ app.delete('/videos/delete', (req, res) => {
       console.log(err);
       res.sendStatus(500);
     } else {
-      console.log('DELETE successful! results: ', results);
+      // console.log('DELETE successful! results: ', results);
       res.status(200).json(results);
     }
   });
