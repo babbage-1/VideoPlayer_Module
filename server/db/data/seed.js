@@ -69,9 +69,3 @@ const pool = new Pool(config);
 
 
 
-
-
-// TO COPY THE CSV:
-// scp -i /Users/aysun/Downloads/aysun.pem /Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/VideosData.csv ec2-user@ec2-54-67-84-44.us-west-1.compute.amazonaws.com:~
-
-// scp -i /Users/aysun/Downloads/aysun.pem /Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/AssociatedData.csv ec2-user@ec2-54-67-84-44.us-west-1.compute.amazonaws.com:~
