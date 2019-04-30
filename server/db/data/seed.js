@@ -1,11 +1,6 @@
 const { Pool } = require('pg');
-const pool = new Pool({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'mydb',
-  password: '',
-  port: 5432,
-});
+const { config } = require('../postgres.config.js');
+const pool = new Pool(config);
 
 
 (async () => {
@@ -36,20 +31,23 @@ const pool = new Pool({
 
     console.log('writing to database!');
 
-    //TODO: Use relative paths.
-    const videosPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/VideosData.csv';
-    const associatedPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/AssociatedData.csv';
+
+    const envyVideosPath = '/var/lib/pgsql92/VideosData.csv';
+    const envyAssociatedPath = '/var/lib/pgsql92/AssociatedData.csv';
+
+    // const videosPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/VideosData.csv';
+    // const associatedPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/AssociatedData.csv';
 
     await client.query(`
-      COPY videos FROM '${videosPath}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
+      COPY videos FROM '${envyVideosPath}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
     `);
 
     await client.query(`
-      COPY associatedVideos FROM '${associatedPath}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
+      COPY associatedVideos FROM '${envyAssociatedPath}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
     `);
 
     await client.query(`
-      ALTER TABLE videos ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
+      ALTER TABLE videos ADD COLUMN id SERIAL PRIMARY KEY;
     `);
 
     await client.query(`
@@ -73,3 +71,7 @@ const pool = new Pool({
 
 
 
+// TO COPY THE CSV:
+// scp -i /Users/aysun/Downloads/aysun.pem /Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/VideosData.csv ec2-user@ec2-54-67-84-44.us-west-1.compute.amazonaws.com:~
+
+// scp -i /Users/aysun/Downloads/aysun.pem /Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/AssociatedData.csv ec2-user@ec2-54-67-84-44.us-west-1.compute.amazonaws.com:~

@@ -6,7 +6,7 @@ config:
     - duration: 60
       arrivalRate: 10
       rampTo: 50
-    - duration: 60
+    - duration: 120
       arrivalRate: 50
   defaults:
     headers:
@@ -28,13 +28,15 @@ scenarios:
   - name: "POST requests"
     weight: 1
     flow:
-      - loop:
-        - post:
-            url: "/add"
+      - think: 20
+      - post:
+          url: "/add"
             json:
               name: "test"
               url: "https://www.youtube.com/watch?v=XfRY0ASZHuU"
-        - think: 20
-        count: 10
+
+
+
+
 
 
