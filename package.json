@@ -8,7 +8,7 @@
   },
   "scripts": {
     "grunt-upload": "grunt s3",
-    "build": "webpack -d --watch",
+    "build": "webpack -p",
     "write": "node --max-old-space-size=4096 ./server/db/data/generate.js",
     "seed": "node --max-old-space-size=4096 ./server/db/data/seed.js",
     "seed:cassandra1": "cqlsh -f ./server/db/data/cassandraVideos.cql 127.0.0.1",

@@ -3,6 +3,7 @@ const express = require('express');
 const app = (express());
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const db = require('./db/index');
 const PORT = process.env.PORT || 3001;
 
@@ -46,6 +47,13 @@ app.use('/carousel/:id', express.static(__dirname + '/../client/dist'));
 //   });
 // });
 
+app.get('/loaderio-d4c8c0eecb993340555d613189834bf0', (req, res) => {
+  const filePath = path.join(__dirname, '../loaderio-d4c8c0eecb993340555d613189834bf0.txt');
+  res.sendFile(filePath);
+});
+
+const filePath = path.join(__dirname, '../loaderio-d4c8c0eecb993340555d613189834bf0.txt');
+console.log(filePath);
 
 app.get('/videos/:id', (req, res) => {
   const {id} = req.params;
