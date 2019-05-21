@@ -35,9 +35,6 @@ const pool = new Pool(config);
     const envyVideosPath = '/var/lib/pgsql92/VideosData.csv';
     const envyAssociatedPath = '/var/lib/pgsql92/AssociatedData.csv';
 
-    // const videosPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/VideosData.csv';
-    // const associatedPath = '/Users/aysun/Documents/hr/video-player-and-carousel/server/db/data/csv/AssociatedData.csv';
-
     await client.query(`
       COPY videos FROM '${envyVideosPath}' WITH (FORMAT CSV, HEADER, DELIMITER('|'))
     `);

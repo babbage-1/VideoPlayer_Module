@@ -14,7 +14,7 @@ const createVideo = function(name, url, callback) {
   })
 }
 
-//This query adds a video into videos table and adds id of that video and associatedid(itself) to associatedVideos table. However this query takes too much time because it looks for name and url to find the insert id in 10M rows.
+
 const createVideoAndAssociation = async(name, url) => {
   const client =await pool.connect();
   try {

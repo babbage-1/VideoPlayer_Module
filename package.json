@@ -1,7 +1,7 @@
 {
-  "name": "video-player-and-carousel",
-  "description": "",
-  "author": "",
+  "name": "VideoPlayer_Module",
+  "description": "Video player module of movie trailer application",
+  "author": "Aysun SUlun Tas",
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
@@ -52,12 +52,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/team-fry-hrr37-fec/video-player-and-carousel.git"
+    "url": "git+https://github.com/MovieOke_BackEnd/VideoPlayer_Module.git"
   },
   "bugs": {
-    "url": "https://github.com/team-fry-hrr37-fec/video-player-and-carousel/issues"
+    "url": "https://github.com/MovieOke_BackEnd/VideoPlayer_Module/issues"
   },
-  "homepage": "https://github.com/team-fry-hrr37-fec/video-player-and-carousel#readme",
+  "homepage": "https://github.com/MovieOke_BackEnd/VideoPlayer_Module#readme",
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
