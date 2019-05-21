@@ -1,23 +1,35 @@
-# video-player-and-carousel
+# VideoPlayer Module
 
 ## Related Projects
-  https://github.com/team-fry-hrr37-fec/video-player-and-carousel
+  https://github.com/MovieOke_BackEnd/VideoPlayer_Module.git
+  https://github.com/MovieOke_BackEnd/MainInfo_Module.git
+  https://github.com/MovieOke_BackEnd/CastCrew_Module.git
+  https://github.com/MovieOke_BackEnd/VideoPlayer_Proxy.git
+  https://github.com/MovieOke_BackEnd/MainInfo_Proxy.git
+  https://github.com/MovieOke_BackEnd/CastCrew_Proxy.git
 
 ## Requirements
   - PostgreSQL should be installed and running on your machine
   - Node 6.13.0
-  - etc
-  
+
 ## Installing Dependencies
   From within the root directory:
     - npm install -g webpack
     - npm install
+    - npm run build
+    - npm run start
 
 ## CRUD API Routes
 
-| intention                                                       | request type | request url       | request body                                                          | side effect                                                     | response body                                                                                                                           |
-|-----------------------------------------------------------------|--------------|-------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| read movie name and associated videos                           | GET          | /videos/:id | none                                                                  | none                                                            | [{id:1, name:'2001: A Space Odyssey',associatedVideos:[{title: '...',url: '...'},{title: '...',url: '...'},{title: '...',url: '...'}]}] |
-| add movie name and associated videos to database                | POST         | /videos/:id | {name: 'Shrek', associatedVideos:[{title: '...', url: '...'}, ...]}   | add movie and associated videos to database                     | {name: Shrek, associatedVideos:[{title: '...', url: '...'}, ...]}                                                                       |
-| edit specified movie name and associated videos in database     | PUT          | /videos/:id | {name: 'Shrek', associatedVideos:[{title: '...', url: '...'}, ...]}   | update specified movie or associated videos in database         | {name: 'Shrek 2', associatedVideos:[{title: '...', url: '...'}, ...]}                                                                   |
-| remove specified movie name and associated videos from database | DELETE       | /videos/:id | {name: 'Shrek 2', associatedVideos:[{title: '...', url: '...'}, ...]} | delete specified movie name and associated videos from database | {name: 'Shrek 2', associatedVideos:[{title: '...', url: '...'}, ...]}                                                                   |
+READ video data and associated video data: /videos/:id
+Example Response Body:[{id:1, name:'non et', url: 'https://www.youtube.com/watch?v=woGW-H770j4'}, {id:54420, name:'mollitia sint', url: 'https://www.youtube.com/watch?v=ttOcHmRxmQ8'}, {id:2179966, name:'tempora debitis', url: 'https://www.youtube.com/watch?v=wKvOud9GcRQ'}]
+
+CREATE video data to database: /videos/add
+Example Request Body: {id:10000001, name:'new movie', url: 'https://www.youtube.com/watch?v=wKvOud9GcRQ'}
+
+UPDATE movie name and url in database: /videos/update
+Example Request Body: {id:1, name:'updated movie', url: 'https://www.youtube.com/watch?v=woGW-H770j4'}
+
+DELETE association from database: /videos/delete
+Example Request Body: {id: 1, associatedId: 54420}
+

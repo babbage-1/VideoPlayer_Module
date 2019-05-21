@@ -52,7 +52,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MovieOke_BackEnd/VideoPlayer_Module.git"
+    "url": "https://github.com/MovieOke_BackEnd/VideoPlayer_Module.git"
   },
   "bugs": {
     "url": "https://github.com/MovieOke_BackEnd/VideoPlayer_Module/issues"
