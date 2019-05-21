@@ -20,7 +20,7 @@
   - npm run start
 
 ## CRUD API Routes
- - READ video data and associated video data: /videos/:id
+- READ video data and associated video data: /videos/:id
   - Example Response Body:[{id:1, name:'non et', url: 'https://www.youtube.com/watch?v=woGW-H770j4'}, {id:54420, name:'mollitia sint', url: 'https://www.youtube.com/watch?v=ttOcHmRxmQ8'}, {id:2179966, name:'tempora debitis', url: 'https://www.youtube.com/watch?v=wKvOud9GcRQ'}]
 
 - CREATE video data to database: /videos/add
